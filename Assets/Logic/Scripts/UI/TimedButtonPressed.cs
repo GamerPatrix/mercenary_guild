@@ -1,31 +1,41 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
-namespace Logic.Scripts
+namespace mercenary_guild
 {
     /// <summary>
     /// Moves one UI Image towards another UI Image at a constant linear speed.
-    /// When reaching the target, pauses for 1 frame then continues past it in the same direction.
+    /// Evaluates player click timing based on distance to target.
+    /// Continues past the target in its last known direction upon impact.
     /// </summary>
     public class TimedButtonPressed : MonoBehaviour
     {
         [Header("Images")]
-        
         /// <summary>The image that will move</summary>
         [SerializeField] private Image movingImage;
-        
+
         /// <summary>The target image to move towards</summary>
         [SerializeField] private Image targetImage;
 
         [Header("Movement Settings")]
-        
         /// <summary>Speed of movement in pixels per second</summary>
         [SerializeField] private float moveSpeed = 100f;
 
-        /// <summary>The starting position of the moving image</summary>
+        [Header("Timing Thresholds")]
+        [Tooltip("Distance threshold for a perfect hit. Also acts as the late-hit window after passing target.")]
+        [SerializeField] private float perfectTolerance = 15f;
+
+        [Tooltip("Distance threshold for a slightly early hit (beyond the perfect window).")]
+        [SerializeField] private float earlyTolerance = 40f;
+
+        // --- Events ---
+        public event Action OnPerfectSuccess;
+        public event Action OnLittleEarly;
+        public event Action OnFail;
+
+        // Properties
         public Vector2 StartPosition { get; private set; }
-        
-        /// <summary>Whether the image is currently moving</summary>
         public bool IsMoving { get; private set; } = false;
 
         // Internal state tracking
@@ -35,68 +45,103 @@ namespace Logic.Scripts
 
         void Start()
         {
-            // Store starting position if moving image is assigned
             if (movingImage != null)
             {
                 StartPosition = movingImage.rectTransform.anchoredPosition;
             }
+            StartMoving();
         }
 
         void Update()
         {
             if (!IsMoving || movingImage == null || targetImage == null) return;
 
-            // Get current and target positions
             Vector2 currentPosition = movingImage.rectTransform.anchoredPosition;
             Vector2 targetPosition = targetImage.rectTransform.anchoredPosition;
 
-            // If we're currently paused at the target, resume movement after 1 frame
             if (isPausedAtTarget)
             {
                 isPausedAtTarget = false;
                 hasReachedTarget = true;
-                
-                // Continue in the original direction past the target
+
+                // Continue moving in the dynamically updated direction
                 movingImage.rectTransform.anchoredPosition += movementDirection * moveSpeed * Time.deltaTime;
                 return;
             }
 
             if (!hasReachedTarget)
             {
-                // Calculate direction to target
                 Vector2 directionToTarget = (targetPosition - currentPosition).normalized;
-                
-                // Store the initial movement direction on first frame
-                if (movementDirection == Vector2.zero)
+
+                // FIX: Update the direction continuously so we know exactly 
+                // which way it was facing right before hitting the target.
+                if (directionToTarget != Vector2.zero)
                 {
                     movementDirection = directionToTarget;
                 }
-                
-                // Check if we're close enough to snap to target
+
                 float distanceToTarget = Vector2.Distance(currentPosition, targetPosition);
-                
+
                 if (distanceToTarget <= moveSpeed * Time.deltaTime)
                 {
-                    // Snap to exact position and pause for 1 frame
                     movingImage.rectTransform.anchoredPosition = targetPosition;
                     isPausedAtTarget = true;
                 }
                 else
                 {
-                    // Move at constant speed towards target
                     movingImage.rectTransform.anchoredPosition += directionToTarget * moveSpeed * Time.deltaTime;
                 }
             }
             else
             {
-                // Continue in the original direction past the target
+                // Continue in the direction it was last moving when it hit the target
                 movingImage.rectTransform.anchoredPosition += movementDirection * moveSpeed * Time.deltaTime;
             }
         }
 
         /// <summary>
-        /// Starts the movement animation from current position to target
+        /// Call this method via your UI Button component when the player presses the input button.
         /// </summary>
+        public void OnButtonPressed()
+        {
+            if (!IsMoving || movingImage == null || targetImage == null)
+            {
+                OnFail?.Invoke();
+                return;
+            }
+
+            Vector2 currentPosition = movingImage.rectTransform.anchoredPosition;
+            Vector2 targetPosition = targetImage.rectTransform.anchoredPosition;
+            float distance = Vector2.Distance(currentPosition, targetPosition);
+
+            if (!hasReachedTarget && !isPausedAtTarget)
+            {
+                if (distance <= perfectTolerance)
+                {
+                    OnPerfectSuccess?.Invoke();
+                }
+                else if (distance <= earlyTolerance)
+                {
+                    OnLittleEarly?.Invoke();
+                }
+                else
+                {
+                    OnFail?.Invoke();
+                }
+            }
+            else
+            {
+                if (isPausedAtTarget || distance <= perfectTolerance)
+                {
+                    OnPerfectSuccess?.Invoke();
+                }
+                else
+                {
+                    OnFail?.Invoke();
+                }
+            }
+        }
+
         public void StartMoving()
         {
             IsMoving = true;
@@ -105,15 +150,12 @@ namespace Logic.Scripts
             movementDirection = Vector2.zero;
         }
 
-        /// <summary>
-        /// Stops the movement and resets to starting position
-        /// </summary>
         public void ResetPosition()
         {
             IsMoving = false;
             hasReachedTarget = false;
             isPausedAtTarget = false;
-            
+
             if (movingImage != null)
             {
                 movingImage.rectTransform.anchoredPosition = StartPosition;
