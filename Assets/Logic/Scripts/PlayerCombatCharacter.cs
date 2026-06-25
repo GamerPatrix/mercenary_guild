@@ -11,7 +11,7 @@ namespace mercenary_guild
 
         private void LoadPlayerStats()
         {
-           
+
             SetCharacterStats(
                 name: "Hero",
                 maxHealth: 100f,
@@ -22,11 +22,11 @@ namespace mercenary_guild
             );
         }
 
-        
+
         protected override void Die()
         {
             base.Die();
             Debug.Log("Triggering Game Over Screen UI...");
         }
-    
+    }
 }
