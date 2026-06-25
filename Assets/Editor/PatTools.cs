@@ -8,7 +8,7 @@ public static class PatTools
     private const string PREFS_KEY_ORIGINAL_SCENE = "PatTools_OriginalScenePath";
     private const string PREFS_KEY_SHOULD_RETURN = "PatTools_ShouldReturn";
 
-    // This constructor runs automatically whenever the editor loads or changes play states
+    //constructor runs whenever editor loads or changes play states
     static PatTools()
     {
         EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
@@ -25,14 +25,14 @@ public static class PatTools
 
         if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
         {
-            // 1. Save the current scene path
+            // Save current scene path
             string currentScenePath = EditorSceneManager.GetActiveScene().path;
             EditorPrefs.SetString(PREFS_KEY_ORIGINAL_SCENE, currentScenePath);
 
-            // 2. Set a flag indicating we used the tool to launch the game
+            // Set flag indicating we used tool to launch game
             EditorPrefs.SetBool(PREFS_KEY_SHOULD_RETURN, true);
 
-            // 3. Load the first scene and play
+            // Load first scene and play
             string firstScenePath = EditorBuildSettings.scenes[0].path;
             EditorSceneManager.OpenScene(firstScenePath);
             EditorApplication.isPlaying = true;
@@ -41,24 +41,24 @@ public static class PatTools
 
     private static void OnPlayModeStateChanged(PlayModeStateChange state)
     {
-        // Only trigger when we completely return to Edit Mode
+        // Only trigger when completely return to Edit Mode
         if (state == PlayModeStateChange.EnteredEditMode)
         {
-            // Only return if this specific tool was used to launch the game
+            // return if this tool was used to launch the game
             if (EditorPrefs.GetBool(PREFS_KEY_SHOULD_RETURN, false))
             {
                 string originalScenePath = EditorPrefs.GetString(PREFS_KEY_ORIGINAL_SCENE, "");
 
                 if (!string.IsNullOrEmpty(originalScenePath))
                 {
-                    // Delay the opening slightly to ensure Unity has finished cleaning up the play session
+                    // Delay opening slightly ensures Unity has finished cleaning up
                     EditorApplication.delayCall += () =>
                     {
                         EditorSceneManager.OpenScene(originalScenePath);
                     };
                 }
 
-                // Clean up the flags so it doesn't happen on standard play mode clicks
+                
                 EditorPrefs.DeleteKey(PREFS_KEY_ORIGINAL_SCENE);
                 EditorPrefs.DeleteKey(PREFS_KEY_SHOULD_RETURN);
             }
