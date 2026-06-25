@@ -8,7 +8,7 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private Button playButton;
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button quitButton;
-
+    [SerializeField] private MainMenuUIManager mainMenuUIManager;
 
 
     private void Awake()
@@ -27,6 +27,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void OpenOptions()
     {
+        mainMenuUIManager.goToOptions();
         Debug.Log("Opening options menu...");
         
     }

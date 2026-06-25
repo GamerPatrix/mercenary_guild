@@ -343,6 +343,102 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 232797574444580409, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 232797574444580409, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 232797574444580409, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 232797574444580409, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 232797574444580409, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 232797574444580409, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 903164285520528573, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_fontSize
+      value: 23.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 903164285520528573, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3549931049292059963, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -17.9361
+      objectReference: {fileID: 0}
+    - target: {fileID: 3549931049292059963, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.68979645
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754685786891807130, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754685786891807130, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754685786891807130, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754685786891807130, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754685786891807130, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754685786891807130, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823610117976164489, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -17.2462
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823610117976164489, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.3449
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149141376258011115, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_fontSize
+      value: 26.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149141376258011115, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6225905328066103130, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -15.8665
+      objectReference: {fileID: 0}
+    - target: {fileID: 6225905328066103130, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.34490204
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922193570546952240, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922193570546952240, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8596528036075217629, guid: abb892ed348fa5e45b5bdadfdb828af1, type: 3}
       propertyPath: m_Name
       value: MainMenuCanvas

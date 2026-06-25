@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
+  m_Name: CombatScene
+  m_EditorClassIdentifier: Unity.Localization.Editor::UnityEditor.Localization.StringTableCollection
+  m_SharedTableData: {fileID: 11400000, guid: 4cc2b7bf7e7ccc7408cf08229038108d, type: 2}
+  m_Tables:
+  - {fileID: 11400000, guid: 49b87159d0038dd4b8f380b37fa2a210, type: 2}
+  - {fileID: 11400000, guid: f33c86bbb88fbfe4282d0fbd398f638b, type: 2}
+  - {fileID: 11400000, guid: 7540f2d53f3b95345827935c26e1c088, type: 2}
+  - {fileID: 11400000, guid: 287dd6d554a665b41b4faf4a4a2bac0a, type: 2}
+  - {fileID: 11400000, guid: c31fd9f0a71d37246a521c3bc721415f, type: 2}
+  - {fileID: 11400000, guid: d1516512be4faba479a296e642f0fc46, type: 2}
+  - {fileID: 11400000, guid: fa81fa9d928c73649bae5f6986d013fe, type: 2}
+  - {fileID: 11400000, guid: 9d5827765d0f4a546880ab8b0b54fe44, type: 2}
+  - {fileID: 11400000, guid: dd7103dbc98e62043ab1095ed626ae1d, type: 2}
+  - {fileID: 11400000, guid: c09308604bc67104b9dbfc391200fba7, type: 2}
+  - {fileID: 11400000, guid: c00259694c3730847a72a02872399d7c, type: 2}
+  - {fileID: 11400000, guid: bfef6d6c3483ee141a7ae062288200a2, type: 2}
+  - {fileID: 11400000, guid: a604e76b0bfb61e43951c6a2bee83833, type: 2}
+  m_Extensions: []
+  m_Group: String Table
+  references:
+    version: 2
+    RefIds: []
