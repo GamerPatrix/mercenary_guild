@@ -9,14 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/First.unity
     guid: 3332229753833c145aae324bc9c654f5
   - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+    guid: e6699a6b531d35b4b80c98f394103e81
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: cbceaf17f6e772e4e906b3e1c0a69d2a
   - enabled: 1
     path: Assets/Scenes/FirstMap.unity
     guid: 7a755a160ee1b2a47abf511df5191934
   - enabled: 1
-    path: Assets/Scenes/LoadingScene.unity
-    guid: e6699a6b531d35b4b80c98f394103e81
+    path: Assets/Scenes/CombatScene.unity
+    guid: a75277f27367c4446b57678d985e9dc2
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: a44f52aa88f34ea4f8cb124d5764c8b3, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

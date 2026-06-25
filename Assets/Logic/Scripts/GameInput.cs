@@ -26,8 +26,8 @@ namespace mercenary_guild.input
         public event EventHandler OnAlternativeActionStart;//middle mouse
         public event EventHandler OnALternativeActionCancel;
 
-        public event EventHandler OnPrimaryAlternativeAction; // middle + left
-        public event EventHandler OnSecondaryAlternativeAction; // middle + right
+        public event EventHandler OnPrimaryAlternativeAction; 
+        public event EventHandler OnSecondaryAlternativeAction; 
         public event EventHandler OnInteractAlternativeAction;
         public event EventHandler OnInteractSecondAlternativeAction;
         public event Action<Vector2> MoveChanged;
@@ -55,7 +55,7 @@ namespace mercenary_guild.input
         {
             if (Instance != null)
             {
-                Destroy(this);
+                Destroy(this.gameObject);
             }
             else
             {
@@ -89,12 +89,12 @@ namespace mercenary_guild.input
 
         private void Movement_canceled(InputAction.CallbackContext obj)
         {
-            MoveChanged.Invoke(GetMovementVectorNormalized());
+            MoveChanged?.Invoke(GetMovementVectorNormalized());
         }
 
         private void Movement_performed(InputAction.CallbackContext obj)
         {
-            MoveChanged.Invoke(GetMovementVectorNormalized());
+            MoveChanged?.Invoke(GetMovementVectorNormalized());
         }
 
         private void OnDestroy()
@@ -238,7 +238,7 @@ namespace mercenary_guild.input
 
         public void RebindBinding(Binding binding, Action onActionRebound)
         {
-            //playerActions.Player.Disable();
+            playerActions.Player.Disable();
 
             InputAction inputAction;
             int bindingIndex;
