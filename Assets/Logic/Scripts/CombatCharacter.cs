@@ -1,9 +1,11 @@
 using UnityEngine;
-
+using System;
 namespace mercenary_guild
 {
-    public class CombatCharacter : MonoBehaviour
+    public abstract class CombatCharacter : MonoBehaviour
     {
+        public event EventHandler OnCharacterDeath;
+
         public string CharacterName { get; protected set; }
         public float MaxHealth { get; protected set; }
         public float CurrentHealth { get; protected set; }
@@ -22,7 +24,8 @@ namespace mercenary_guild
             MagicResistance = Mathf.Clamp01(magicRes);
         }
 
-        public virtual void DealDamage(CombatCharacter target, float rawDamage, DamageType damageType)
+        public abstract void Attack(CombatCharacter target);
+        protected virtual void DealDamage(CombatCharacter target, float rawDamage, DamageType damageType) //todo this is stupid
         {
             if (target == null) return;
 
@@ -30,7 +33,7 @@ namespace mercenary_guild
             target.RecieveDamage(rawDamage, damageType);
         }
 
-        public virtual void RecieveDamage(float incomingDamage, DamageType damageType)
+        protected virtual void RecieveDamage(float incomingDamage, DamageType damageType)
         {
             float resistance = damageType switch
             {
@@ -54,6 +57,7 @@ namespace mercenary_guild
         protected virtual void Die() //always loving the function DIE
         {
             Debug.Log($"{CharacterName} has been defeated!");
+            OnCharacterDeath?.Invoke(this, EventArgs.Empty);
         }
     }
 

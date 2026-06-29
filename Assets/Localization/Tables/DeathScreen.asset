@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
+  m_Name: DeathScreen
+  m_EditorClassIdentifier: Unity.Localization.Editor::UnityEditor.Localization.StringTableCollection
+  m_SharedTableData: {fileID: 11400000, guid: 05e4de0ce61f99046b8afc8d5a16c731, type: 2}
+  m_Tables:
+  - {fileID: 11400000, guid: f01f20aa0cf98e744b66a884ddadddd5, type: 2}
+  - {fileID: 11400000, guid: 00d9cb0b8bec715409290e6c2609d7b8, type: 2}
+  - {fileID: 11400000, guid: 8eb1dd9c8b3a9474ab983038946282a2, type: 2}
+  - {fileID: 11400000, guid: b7bee156cc7c88545ac0c3dd3fa1bd5c, type: 2}
+  - {fileID: 11400000, guid: 4f652141c09b76e48892ac578d9487dc, type: 2}
+  - {fileID: 11400000, guid: e9e6452dfbdf78140bb8cbcf274f23c6, type: 2}
+  - {fileID: 11400000, guid: 4523df6058c872c4d9566c0042350a75, type: 2}
+  - {fileID: 11400000, guid: f88572f3f2c3c0b42858923bc0c96173, type: 2}
+  - {fileID: 11400000, guid: af55683d3daa03648b4ed9777c14147c, type: 2}
+  - {fileID: 11400000, guid: 8580f998383abfa42a5b8756f5163bc8, type: 2}
+  - {fileID: 11400000, guid: 7e76031f5b325ba428da46c06ce4e8e0, type: 2}
+  - {fileID: 11400000, guid: 7cc1f1d9c842fa1488313ed21fabfd4e, type: 2}
+  - {fileID: 11400000, guid: 6b8db0d5a748b0b4e9a0b433671d8c16, type: 2}
+  m_Extensions: []
+  m_Group: String Table
+  references:
+    version: 2
+    RefIds: []

@@ -12,3 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e49fc8eee5bbd4e9781cfc367547d8, type: 3}
   m_Name: TMPEnemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemySO
+  enemyPrefab: {fileID: 5457927148169098992, guid: 2d6f6958707a78b408c4f89d11a39a66, type: 3}
+  enemyName: SimpleEnemy
+  maxHealth: 100
+  physicalDamage: 1
+  magicDamage: 5
+  physicalResistance: 0.113
+  magicResistance: 0.248
+  experienceReward: 43
+  goldReward: 20

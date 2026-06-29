@@ -19,6 +19,14 @@ MonoBehaviour:
     m_Key: CombatScene.Retreat
     m_Metadata:
       m_Items: []
+  - m_Id: 1500588901339136
+    m_Key: CombatScene.Attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1501029697523712
+    m_Key: CombatScene.Potions
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -21,6 +21,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-uk
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6b8db0d5a748b0b4e9a0b433671d8c16
+    m_Address: DeathScreen_uk
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-uk
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a604e76b0bfb61e43951c6a2bee83833
     m_Address: CombatScene_uk
     m_ReadOnly: 1

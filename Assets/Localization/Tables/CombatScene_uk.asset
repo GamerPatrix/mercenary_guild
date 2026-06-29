@@ -22,6 +22,10 @@ MonoBehaviour:
     m_Localized: aaaa
     m_Metadata:
       m_Items: []
+  - m_Id: 1500588901339136
+    m_Localized: Attack
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

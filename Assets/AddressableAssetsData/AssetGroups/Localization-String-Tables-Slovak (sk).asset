@@ -21,6 +21,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-sk
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8580f998383abfa42a5b8756f5163bc8
+    m_Address: DeathScreen_sk
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sk
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c09308604bc67104b9dbfc391200fba7
     m_Address: CombatScene_sk
     m_ReadOnly: 1

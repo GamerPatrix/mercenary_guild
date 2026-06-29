@@ -4,6 +4,7 @@ namespace mercenary_guild
 {
     public class PlayerCombatCharacter : CombatCharacter
     {
+
         private void Start()
         {
             LoadPlayerStats();
@@ -22,11 +23,17 @@ namespace mercenary_guild
             );
         }
 
+        
 
         protected override void Die()
         {
             base.Die();
-            Debug.Log("Triggering Game Over Screen UI...");
+            
+        }
+
+        public override void Attack(CombatCharacter target)
+        {
+            DealDamage(target, this.PhysicalDamage, DamageType.Physical);
         }
     }
 }

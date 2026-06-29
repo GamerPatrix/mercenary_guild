@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Czech (cs)
   m_GUID: 582b4c2870891bc42b51a85814ffdfa5
   m_SerializeEntries:
+  - m_GUID: 00d9cb0b8bec715409290e6c2609d7b8
+    m_Address: DeathScreen_cs
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-cs
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c6b1acf27f8605a4b913a1382d95e720
     m_Address: MainMenuUI_cs
     m_ReadOnly: 1

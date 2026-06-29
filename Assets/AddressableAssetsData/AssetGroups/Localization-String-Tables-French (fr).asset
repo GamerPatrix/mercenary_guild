@@ -21,6 +21,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-fr
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b7bee156cc7c88545ac0c3dd3fa1bd5c
+    m_Address: DeathScreen_fr
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-fr
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c81b778947d7e4747825d8f3772dab3e
     m_Address: MainMenuUI_fr
     m_ReadOnly: 1
