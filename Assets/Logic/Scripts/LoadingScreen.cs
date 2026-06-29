@@ -6,7 +6,7 @@ public class LoadingScreen : MonoBehaviour
     int timeount = 0;
     private void Update()
     {
-        if (timeount--<=0)
+        if (timeount--<=0 && first)
         {
             first = false;
             Loader.LoaderCallBack();

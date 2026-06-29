@@ -21,8 +21,8 @@ namespace mercenary_guild.input
         public event EventHandler OnSecondaryClickActionStart;//right click
         public event EventHandler OnSecondaryClickActionCancel;
 
-        public event EventHandler OnAlternativeActionStart;//middle mouse
-        public event EventHandler OnALternativeActionCancel;
+        //public event EventHandler OnAlternativeActionStart;//middle mouse
+        //public event EventHandler OnALternativeActionCancel;
 
         public event EventHandler OnPrimaryAlternativeAction; 
         public event EventHandler OnSecondaryAlternativeAction; 

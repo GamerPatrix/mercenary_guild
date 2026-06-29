@@ -48,7 +48,7 @@ public static class Loader
     public static void LoadDirectly(int scene) { SceneManager.LoadScene(scene); }
 
 
-    private static bool isLoading = false;
+    //private static bool isLoading = false;
 
     public static void LoaderCallBack()
     {

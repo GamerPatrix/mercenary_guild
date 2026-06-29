@@ -4,7 +4,7 @@ public class EcounterBushes : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("a");
+        Debug.Log("Bush Encounterd");
         if (collision.tag == "Player")
         {
             GameManager.instance.startEnemyEncounter();
