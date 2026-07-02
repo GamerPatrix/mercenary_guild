@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class TMPGoToMainMenuButton : MonoBehaviour
+public class GoToMainMenuButton : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public void goBakc()
+    public void GoBakc()
     {
         Loader.LoadMainMenu();
     }

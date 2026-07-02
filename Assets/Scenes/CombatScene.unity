@@ -585,9 +585,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 820003792}
     m_Modifications:
+    - target: {fileID: 136757517201833057, guid: 7fd9f3aa7f3e41b43bd4187814aa18d0, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136757517201833057, guid: 7fd9f3aa7f3e41b43bd4187814aa18d0, type: 3}
+      propertyPath: m_Color.g
+      value: 0.97407734
+      objectReference: {fileID: 0}
+    - target: {fileID: 136757517201833057, guid: 7fd9f3aa7f3e41b43bd4187814aa18d0, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042416761666429001, guid: 7fd9f3aa7f3e41b43bd4187814aa18d0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 622
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042416761666429001, guid: 7fd9f3aa7f3e41b43bd4187814aa18d0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 168
+      objectReference: {fileID: 0}
     - target: {fileID: 1302007261915816537, guid: 7fd9f3aa7f3e41b43bd4187814aa18d0, type: 3}
       propertyPath: m_Name
       value: CombatUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190433707398409791, guid: 7fd9f3aa7f3e41b43bd4187814aa18d0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -460
+      objectReference: {fileID: 0}
+    - target: {fileID: 5102454039962289664, guid: 7fd9f3aa7f3e41b43bd4187814aa18d0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152818075793687077, guid: 7fd9f3aa7f3e41b43bd4187814aa18d0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6374381636620179814, guid: 7fd9f3aa7f3e41b43bd4187814aa18d0, type: 3}
       propertyPath: m_Pivot.x
@@ -788,7 +820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9108940322780973131, guid: cab49214d05f4b544a7326c83ea64032, type: 3}
       propertyPath: m_fontSize
-      value: 98.25
+      value: 259.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

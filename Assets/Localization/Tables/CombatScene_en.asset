@@ -30,6 +30,10 @@ MonoBehaviour:
     m_Localized: Dodge
     m_Metadata:
       m_Items: []
+  - m_Id: 1501029697523712
+    m_Localized: Select Potion
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
