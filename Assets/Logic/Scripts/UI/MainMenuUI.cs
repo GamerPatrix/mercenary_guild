@@ -22,7 +22,7 @@ public class MainMenuUI : MonoBehaviour
     private void PlayGame()
     {
         Debug.Log("Loading game...");
-        Loader.LoadGame();
+        Loader.MainMenuStartGameLoad();
     }
 
     private void OpenOptions()

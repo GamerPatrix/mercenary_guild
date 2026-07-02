@@ -1,18 +1,28 @@
 using UnityEngine;
 using System;
+
 namespace mercenary_guild
 {
     public abstract class CombatCharacter : MonoBehaviour
     {
         public event EventHandler OnCharacterDeath;
 
-        public string CharacterName { get; protected set; }
-        public float MaxHealth { get; protected set; }
-        public float CurrentHealth { get; protected set; }
-        public float PhysicalDamage { get; protected set; }
-        public float MagicDamage { get; protected set; }
-        public float PhysicalResistance { get; protected set; }
-        public float MagicResistance { get; protected set; }
+        private string _characterName;
+        private float _maxHealth;
+        private float _currentHealth;
+        private float _physicalDamage;
+        private float _magicDamage;
+        private float _physicalResistance;
+        private float _magicResistance;
+
+        public virtual string CharacterName { get => _characterName; protected set => _characterName = value; }
+        public virtual float MaxHealth { get => _maxHealth; protected set => _maxHealth = value; }
+        public virtual float CurrentHealth { get => _currentHealth; protected set => _currentHealth = value; }
+        public virtual float PhysicalDamage { get => _physicalDamage; protected set => _physicalDamage = value; }
+        public virtual float MagicDamage { get => _magicDamage; protected set => _magicDamage = value; }
+        public virtual float PhysicalResistance { get => _physicalResistance; protected set => _physicalResistance = value; }
+        public virtual float MagicResistance { get => _magicResistance; protected set => _magicResistance = value; }
+
         protected void SetCharacterStats(string name, float maxHealth, float physicalDamage, float magicDamage, float physicalRes, float magicRes)
         {
             CharacterName = name;
@@ -25,22 +35,22 @@ namespace mercenary_guild
         }
 
         public abstract void Attack(CombatCharacter target);
-        protected virtual void DealDamage(CombatCharacter target, float rawDamage, DamageType damageType) //todo this is stupid
+
+        protected virtual void DealDamage(CombatCharacter target, float rawDamage, DamageTypeEnum damageType)
         {
             if (target == null) return;
-
             Debug.Log($"{CharacterName} attacks {target.CharacterName} for {rawDamage} raw {damageType} damage!");
             target.RecieveDamage(rawDamage, damageType);
         }
 
-        protected virtual void RecieveDamage(float incomingDamage, DamageType damageType)
+        protected virtual void RecieveDamage(float incomingDamage, DamageTypeEnum damageType)
         {
             float resistance = damageType switch
             {
-                DamageType.Physical => PhysicalResistance,
-                DamageType.Magic => MagicResistance,
-                DamageType.True => 0f,
-                _ => 0f  //default
+                DamageTypeEnum.Physical => PhysicalResistance,
+                DamageTypeEnum.Magic => MagicResistance,
+                DamageTypeEnum.True => 0f,
+                _ => 0f
             };
 
             float finalDamage = incomingDamage * (1f - resistance);
@@ -54,17 +64,10 @@ namespace mercenary_guild
             }
         }
 
-        protected virtual void Die() //always loving the function DIE
+        protected virtual void Die()
         {
             Debug.Log($"{CharacterName} has been defeated!");
             OnCharacterDeath?.Invoke(this, EventArgs.Empty);
         }
-    }
-
-    public enum DamageType
-    {
-        Physical,
-        Magic,
-        True // Ignores resistances
     }
 }

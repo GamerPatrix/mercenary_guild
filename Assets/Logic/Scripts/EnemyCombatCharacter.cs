@@ -23,7 +23,7 @@ namespace mercenary_guild
 
         public override void Attack(CombatCharacter target)
         {
-            DealDamage(target, PhysicalDamage, DamageType.Physical);
+            DealDamage(target, PhysicalDamage, DamageTypeEnum.Physical);
         }
     }
 }

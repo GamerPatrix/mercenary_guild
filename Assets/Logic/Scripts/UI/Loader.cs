@@ -8,7 +8,11 @@ public static class Loader
     private static int targetScene;
 
     public static void LoadMainMenu() => LoadWLoading("MainMenu");
-    public static void LoadGame() => LoadWLoading("FirstMap");
+
+    public static void MainMenuStartGameLoad() => LoadWLoading("BeforeGameplay"); //ye its a terible function name 
+    public static void LoadActualGameStart() => LoadWLoading("FirstMap"); //ye its a terible function name 
+
+    public static void LoadMap() => LoadWLoading("FirstMap");
     public static void LoadTest() => LoadDirectly("TMP");
 
     public static void AddAscene(int scene) { SceneManager.LoadScene(scene, LoadSceneMode.Additive); }
