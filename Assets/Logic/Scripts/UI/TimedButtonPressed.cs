@@ -4,44 +4,27 @@ using System;
 
 namespace mercenary_guild
 {
-    /// <summary>
-    /// Moves one UI Image towards another UI Image at a constant linear speed.
-    /// Evaluates player click timing based on distance to target.
-    /// Continues past the target in its last known direction upon impact.
-    /// </summary>
     public class TimedButtonPressed : MonoBehaviour
     {
-        [Header("Images")]
-        /// <summary>The image that will move</summary>
+        [Header("UI Hookups")]
+        [SerializeField] private Button inputButton;
         [SerializeField] private Image movingImage;
-
-        /// <summary>The target image to move towards</summary>
         [SerializeField] private Image targetImage;
 
         [Header("Movement Settings")]
-        /// <summary>Speed of movement in pixels per second</summary>
         [SerializeField] private float moveSpeed = 100f;
 
         [Header("Timing Thresholds")]
-        [Tooltip("Distance threshold for a perfect hit. Also acts as the late-hit window after passing target.")]
         [SerializeField] private float perfectTolerance = 15f;
-
-        [Tooltip("Distance threshold for a slightly early hit (beyond the perfect window).")]
         [SerializeField] private float earlyTolerance = 40f;
 
-        // --- Events ---
-        public event Action OnPerfectSuccess;
-        public event Action OnLittleEarly;
-        public event Action OnFail;
+        public event Action<int> OnClick;
 
-        // Properties
         public Vector2 StartPosition { get; private set; }
         public bool IsMoving { get; private set; } = false;
 
-        // Internal state tracking
-        private Vector2 movementDirection;
+        private Vector3 movementDirection;
         private bool hasReachedTarget = false;
-        private bool isPausedAtTarget = false;
 
         void Start()
         {
@@ -49,96 +32,98 @@ namespace mercenary_guild
             {
                 StartPosition = movingImage.rectTransform.anchoredPosition;
             }
+
+            if (inputButton != null)
+            {
+                inputButton.onClick.RemoveListener(OnButtonPressed);
+                inputButton.onClick.AddListener(OnButtonPressed);
+            }
+            else
+            {
+                Debug.LogWarning($"Input Button is missing on {gameObject.name}!", this);
+            }
+
+            ResetPosition();
             StartMoving();
+        }
+
+        void OnDestroy()
+        {
+            if (inputButton != null)
+            {
+                inputButton.onClick.RemoveListener(OnButtonPressed);
+            }
         }
 
         void Update()
         {
             if (!IsMoving || movingImage == null || targetImage == null) return;
 
-            Vector2 currentPosition = movingImage.rectTransform.anchoredPosition;
-            Vector2 targetPosition = targetImage.rectTransform.anchoredPosition;
-
-            if (isPausedAtTarget)
-            {
-                isPausedAtTarget = false;
-                hasReachedTarget = true;
-
-                // Continue moving in the dynamically updated direction
-                movingImage.rectTransform.anchoredPosition += movementDirection * moveSpeed * Time.deltaTime;
-                return;
-            }
-
             if (!hasReachedTarget)
             {
-                Vector2 directionToTarget = (targetPosition - currentPosition).normalized;
+                Vector3 currentWorldPos = movingImage.transform.position;
+                Vector3 targetWorldPos = targetImage.transform.position;
 
-                // FIX: Update the direction continuously so we know exactly 
-                // which way it was facing right before hitting the target.
-                if (directionToTarget != Vector2.zero)
+                Vector3 toTarget = targetWorldPos - currentWorldPos;
+                float distanceToTarget = toTarget.magnitude;
+
+                if (distanceToTarget > 0)
                 {
-                    movementDirection = directionToTarget;
+                    movementDirection = toTarget.normalized;
                 }
 
-                float distanceToTarget = Vector2.Distance(currentPosition, targetPosition);
-
-                if (distanceToTarget <= moveSpeed * Time.deltaTime)
+                float moveStep = moveSpeed * Time.deltaTime;
+                if (distanceToTarget <= moveStep)
                 {
-                    movingImage.rectTransform.anchoredPosition = targetPosition;
-                    isPausedAtTarget = true;
+                    movingImage.transform.position = targetWorldPos;
+                    hasReachedTarget = true;
                 }
                 else
                 {
-                    movingImage.rectTransform.anchoredPosition += directionToTarget * moveSpeed * Time.deltaTime;
+                    movingImage.transform.Translate(movementDirection * moveStep, Space.World);
                 }
             }
             else
             {
-                // Continue in the direction it was last moving when it hit the target
-                movingImage.rectTransform.anchoredPosition += movementDirection * moveSpeed * Time.deltaTime;
+                movingImage.transform.Translate(movementDirection * moveSpeed * Time.deltaTime, Space.World);
             }
         }
 
-        /// <summary>
-        /// Call this method via your UI Button component when the player presses the input button.
-        /// </summary>
         public void OnButtonPressed()
         {
             if (!IsMoving || movingImage == null || targetImage == null)
             {
-                OnFail?.Invoke();
+                OnClick?.Invoke(0);
                 return;
             }
 
-            Vector2 currentPosition = movingImage.rectTransform.anchoredPosition;
-            Vector2 targetPosition = targetImage.rectTransform.anchoredPosition;
-            float distance = Vector2.Distance(currentPosition, targetPosition);
+            Vector2 currentAnchoredPos = movingImage.rectTransform.anchoredPosition;
 
-            if (!hasReachedTarget && !isPausedAtTarget)
+            Vector2 targetLocalPos;
+            RectTransform utilityRect = movingImage.rectTransform.parent as RectTransform;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                utilityRect,
+                RectTransformUtility.WorldToScreenPoint(null, targetImage.transform.position),
+                null,
+                out targetLocalPos
+            );
+
+            float distance = Vector2.Distance(currentAnchoredPos, targetLocalPos);
+
+            if (distance <= perfectTolerance)
             {
-                if (distance <= perfectTolerance)
-                {
-                    OnPerfectSuccess?.Invoke();
-                }
-                else if (distance <= earlyTolerance)
-                {
-                    OnLittleEarly?.Invoke();
-                }
-                else
-                {
-                    OnFail?.Invoke();
-                }
+                OnClick?.Invoke(1);
+                Debug.Log("PERFECT! " + distance);
+            }
+            else if (!hasReachedTarget && distance <= earlyTolerance)
+            {
+                OnClick?.Invoke(2);
+                Debug.Log("Early! " + distance);
             }
             else
             {
-                if (isPausedAtTarget || distance <= perfectTolerance)
-                {
-                    OnPerfectSuccess?.Invoke();
-                }
-                else
-                {
-                    OnFail?.Invoke();
-                }
+                OnClick?.Invoke(0);
+                Debug.Log("Miss/Fail! " + distance);
             }
         }
 
@@ -146,15 +131,17 @@ namespace mercenary_guild
         {
             IsMoving = true;
             hasReachedTarget = false;
-            isPausedAtTarget = false;
-            movementDirection = Vector2.zero;
+
+            if (movingImage != null && targetImage != null)
+            {
+                movementDirection = (targetImage.transform.position - movingImage.transform.position).normalized;
+            }
         }
 
         public void ResetPosition()
         {
             IsMoving = false;
             hasReachedTarget = false;
-            isPausedAtTarget = false;
 
             if (movingImage != null)
             {

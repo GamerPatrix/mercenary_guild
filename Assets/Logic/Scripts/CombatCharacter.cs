@@ -34,16 +34,16 @@ namespace mercenary_guild
             MagicResistance = Mathf.Clamp01(magicRes);
         }
 
-        public abstract void Attack(CombatCharacter target);
+        public abstract bool Attack(CombatCharacter target);
 
-        protected virtual void DealDamage(CombatCharacter target, float rawDamage, DamageTypeEnum damageType)
+        protected virtual bool DealDamage(CombatCharacter target, float rawDamage, DamageTypeEnum damageType)
         {
-            if (target == null) return;
+            if (target == null) return false;
             Debug.Log($"{CharacterName} attacks {target.CharacterName} for {rawDamage} raw {damageType} damage!");
-            target.RecieveDamage(rawDamage, damageType);
+            return target.RecieveDamage(rawDamage, damageType);
         }
 
-        protected virtual void RecieveDamage(float incomingDamage, DamageTypeEnum damageType)
+        protected virtual bool RecieveDamage(float incomingDamage, DamageTypeEnum damageType)
         {
             float resistance = damageType switch
             {
@@ -59,9 +59,11 @@ namespace mercenary_guild
             Debug.Log($"{CharacterName} took {finalDamage} of {damageType} damage. HP left: {CurrentHealth}/{MaxHealth}");
 
             if (CurrentHealth <= 0f)
-            {
+            { 
                 Die();
+                return true;
             }
+            return false;
         }
 
         protected virtual void Die()

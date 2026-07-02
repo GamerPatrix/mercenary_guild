@@ -27,6 +27,10 @@ MonoBehaviour:
     m_Key: CombatScene.Potions
     m_Metadata:
       m_Items: []
+  - m_Id: 2623562593275904
+    m_Key: CombatScene.Dodge
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

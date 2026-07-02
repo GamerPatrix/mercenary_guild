@@ -27,9 +27,9 @@ namespace mercenary_guild
             protected set => playerManager.SetHealth(value);
         }
 
-        public override void Attack(CombatCharacter target)
+        public override bool Attack(CombatCharacter target)
         {
-            DealDamage(target, PhysicalDamage, DamageTypeEnum.Physical);
+           return DealDamage(target, PhysicalDamage, DamageTypeEnum.Physical);
         }
 
         protected override void Die()

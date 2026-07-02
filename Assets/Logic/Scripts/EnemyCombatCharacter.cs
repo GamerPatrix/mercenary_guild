@@ -21,9 +21,9 @@ namespace mercenary_guild
         
         public int GetGoldReward() => enemyData != null ? enemyData.goldReward : 0;
 
-        public override void Attack(CombatCharacter target)
+        public override bool Attack(CombatCharacter target)
         {
-            DealDamage(target, PhysicalDamage, DamageTypeEnum.Physical);
+            return DealDamage(target, PhysicalDamage, DamageTypeEnum.Physical);
         }
     }
 }

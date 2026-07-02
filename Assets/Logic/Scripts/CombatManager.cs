@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 namespace mercenary_guild {
+    //TODO refactor split to CombatManager & CombatUI
     public class CombatManager : MonoBehaviour
     {
         [SerializeField] private Button attack;
         [SerializeField] private Button retreat;
+        [SerializeField] private Button dodge;
 
 
 
@@ -19,6 +21,11 @@ namespace mercenary_guild {
         private GameObject deathUI;
         [SerializeField]
         private GameObject combatUI;
+
+        [SerializeField]
+        private GameObject standardCombat;
+        [SerializeField]
+        private GameObject timeBasedDodge;
         private void Awake()
         {
             combatUI.SetActive(true);
@@ -29,12 +36,26 @@ namespace mercenary_guild {
             attack.onClick.AddListener(() => Attack()); 
 
             retreat.onClick.AddListener(() => Retreat());
+            dodge.onClick.AddListener(() => Dodge());
         }
 
         private void Start()
         {
             playerCombatCharacter.OnCharacterDeath += PlayerCombatCharacter_OnCharacterDeath;
             targetCombatCharacter.OnCharacterDeath += TargetCombatCharacter_OnCharacterDeath;
+
+            var a = timeBasedDodge.GetComponent<TimedButtonPressed>();
+            a.OnClick += TimedButton_OnClick;
+            standardCombat.SetActive(true);
+            timeBasedDodge.SetActive(false);
+        }
+
+        private void TimedButton_OnClick(int obj)
+        {
+            
+            timeBasedDodge.GetComponent<TimedButtonPressed>().ResetPosition();
+            timeBasedDodge.GetComponent<TimedButtonPressed>().StartMoving();
+            timeBasedDodge.SetActive(false);
         }
 
         private void OnDestroy()
@@ -54,7 +75,7 @@ namespace mercenary_guild {
 
         private void Attack()
         {
-            playerCombatCharacter.Attack(targetCombatCharacter);
+             if(playerCombatCharacter.Attack(targetCombatCharacter)) return;
             targetCombatCharacter.Attack(playerCombatCharacter);
         }
 
@@ -63,6 +84,11 @@ namespace mercenary_guild {
             Debug.Log("Retrieating yup englandos");
             Loader.LoadWLoading("FirstMap");
             return true;
+        }
+
+        public void Dodge()
+        {
+            timeBasedDodge.SetActive(true);
         }
 
         public void Success()

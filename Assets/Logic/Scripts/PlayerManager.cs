@@ -23,7 +23,7 @@ namespace mercenary_guild
             if (instance == null)
             {
                 instance = this;
-                DontDestroyOnLoad(gameObject);
+                
             }
             else
             {
