@@ -14,7 +14,6 @@ namespace mercenary_guild
             }
         }
 
-        public override string CharacterName { get => playerManager.CharacterName; protected set => playerManager.CharacterName = value; }
         public override float MaxHealth { get => playerManager.MaxHealth; protected set => playerManager.MaxHealth = value; }
         public override float PhysicalDamage { get => playerManager.PhysicalDamage; protected set => playerManager.PhysicalDamage = value; }
         public override float MagicDamage { get => playerManager.MagicDamage; protected set => playerManager.MagicDamage = value; }
@@ -39,6 +38,11 @@ namespace mercenary_guild
                 playerManager.Die();
             }
             base.Die();
+        }
+
+        public override string GetDisplayName()
+        {
+            return playerManager.CharacterName;
         }
     }
 }

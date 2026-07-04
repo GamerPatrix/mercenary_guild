@@ -13,11 +13,22 @@ MonoBehaviour:
   m_Name: TMPEnemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemySO
   enemyPrefab: {fileID: 5457927148169098992, guid: 2d6f6958707a78b408c4f89d11a39a66, type: 3}
-  enemyName: SimpleEnemy
+  enemyName:
+    m_TableReference:
+      m_TableCollectionName: GUID:69a6e0b649a4aff49b4d473c03d6a237
+    m_TableEntryReference:
+      m_KeyId: 26577932288
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   maxHealth: 100
-  physicalDamage: 1
+  physicalDamage: 10
   magicDamage: 5
   physicalResistance: 0.113
   magicResistance: 0.248
   experienceReward: 43
   goldReward: 20
+  references:
+    version: 2
+    RefIds: []

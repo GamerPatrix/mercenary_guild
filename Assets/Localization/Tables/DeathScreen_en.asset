@@ -16,16 +16,24 @@ MonoBehaviour:
     m_Code: en
   m_SharedData: {fileID: 11400000, guid: 05e4de0ce61f99046b8afc8d5a16c731, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 7718457360186343505
   m_TableData:
   - m_Id: 11151282176
-    m_Localized: YOU DIED .... Go back to main menu?
+    m_Localized: YOU DIED .... \nGo back to main menu?
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 7718457360186343505
   - m_Id: 681799520256
     m_Localized: MainMenu
     m_Metadata:
       m_Items: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 7718457360186343505
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 11151282176

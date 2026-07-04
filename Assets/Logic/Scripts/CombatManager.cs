@@ -1,9 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 namespace mercenary_guild {
     //TODO refactor split to CombatManager & CombatUI
     public class CombatManager : MonoBehaviour
     {
+        [SerializeField] private EnemyBiomeListSO m_enemyBiomeList;
+
         [SerializeField] private Button attack;
         [SerializeField] private Button retreat;
         [SerializeField] private Button dodge;
@@ -37,6 +40,7 @@ namespace mercenary_guild {
 
             retreat.onClick.AddListener(() => Retreat());
             dodge.onClick.AddListener(() => Dodge());
+            targetCombatCharacter.Initialize(GetRandomEnemyByWeightedRarity());
         }
 
         private void Start()
@@ -48,6 +52,66 @@ namespace mercenary_guild {
             a.OnClick += TimedButton_OnClick;
             standardCombat.SetActive(true);
             timeBasedDodge.SetActive(false);
+
+            
+        }
+
+        
+        public List<EnemySO> GetEnemiesByRarity(EnemyBiomeListSO.EnemyRarity targetRarity)
+        {
+            if (m_enemyBiomeList == null || m_enemyBiomeList.enemyList == null) return new List<EnemySO>();
+
+            List<EnemySO> filteredEnemies = new List<EnemySO>();
+            foreach (var data in m_enemyBiomeList.enemyList)
+            {
+                if (data.rarity == targetRarity)
+                {
+                    filteredEnemies.Add(data.enemySO);
+                }
+            }
+            return filteredEnemies;
+        }
+
+        public EnemySO GetRandomEnemyByWeightedRarity()
+        {
+            if (m_enemyBiomeList == null || m_enemyBiomeList.enemyList == null || m_enemyBiomeList.enemyList.Count == 0)
+            {
+                return null;
+            }
+
+            Dictionary<EnemyBiomeListSO.EnemyRarity, float> rarityWeights = new Dictionary<EnemyBiomeListSO.EnemyRarity, float>()
+            {
+                { EnemyBiomeListSO.EnemyRarity.Common, 50f },
+                { EnemyBiomeListSO.EnemyRarity.Uncommon, 30f },
+                { EnemyBiomeListSO.EnemyRarity.Rare, 13f },
+                { EnemyBiomeListSO.EnemyRarity.Epic, 6f },
+                { EnemyBiomeListSO.EnemyRarity.Legendary, 1f }
+            };
+
+            float randomRoll = Random.Range(0f, 100f);
+            float cumulativeWeight = 0f;
+            EnemyBiomeListSO.EnemyRarity chosenRarity = EnemyBiomeListSO.EnemyRarity.Common;
+
+            foreach (var kvp in rarityWeights)
+            {
+                cumulativeWeight += kvp.Value;
+                if (randomRoll <= cumulativeWeight)
+                {
+                    chosenRarity = kvp.Key;
+                    break;
+                }
+            }
+
+            List<EnemySO> validEnemies = GetEnemiesByRarity(chosenRarity);
+
+            if (validEnemies.Count == 0)
+            {
+                Debug.LogWarning($"No enemies found for chosen rarity: {chosenRarity}. Selecting from total pool.");
+                int randomIndex = Random.Range(0, m_enemyBiomeList.enemyList.Count);
+                return m_enemyBiomeList.enemyList[randomIndex].enemySO;
+            }
+
+            return validEnemies[Random.Range(0, validEnemies.Count)];
         }
 
         private void TimedButton_OnClick(int obj)

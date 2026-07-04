@@ -4,20 +4,30 @@ namespace mercenary_guild
 {
     public class EnemyCombatCharacter : CombatCharacter
     {
-        [SerializeField] private EnemySO enemyData;
+        private EnemySO enemyData;
 
-        private void Awake()
+        public override string GetDisplayName()
         {
+            return enemyData?.GetLocalizedEnemyName();
+        }
+
+        public void Initialize(EnemySO enemyData)
+        {
+            this.enemyData = enemyData;
+
+            if (enemyData == null)
+            {
+                return;
+            }
+
             SetCharacterStats(
-                enemyData.enemyName,
                 enemyData.maxHealth,
                 enemyData.physicalDamage,
                 enemyData.magicDamage,
                 enemyData.physicalResistance,
                 enemyData.magicResistance
-            ); 
+            );
         }
-
         
         public int GetGoldReward() => enemyData != null ? enemyData.goldReward : 0;
 

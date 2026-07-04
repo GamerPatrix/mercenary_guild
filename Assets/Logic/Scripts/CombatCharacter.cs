@@ -6,16 +6,14 @@ namespace mercenary_guild
     public abstract class CombatCharacter : MonoBehaviour
     {
         public event EventHandler OnCharacterDeath;
-
-        private string _characterName;
+        public event Action<float> OnHealthChange;
         private float _maxHealth;
         private float _currentHealth;
         private float _physicalDamage;
         private float _magicDamage;
         private float _physicalResistance;
         private float _magicResistance;
-
-        public virtual string CharacterName { get => _characterName; protected set => _characterName = value; }
+     
         public virtual float MaxHealth { get => _maxHealth; protected set => _maxHealth = value; }
         public virtual float CurrentHealth { get => _currentHealth; protected set => _currentHealth = value; }
         public virtual float PhysicalDamage { get => _physicalDamage; protected set => _physicalDamage = value; }
@@ -23,9 +21,9 @@ namespace mercenary_guild
         public virtual float PhysicalResistance { get => _physicalResistance; protected set => _physicalResistance = value; }
         public virtual float MagicResistance { get => _magicResistance; protected set => _magicResistance = value; }
 
-        protected void SetCharacterStats(string name, float maxHealth, float physicalDamage, float magicDamage, float physicalRes, float magicRes)
+        public abstract string GetDisplayName();
+        protected void SetCharacterStats(float maxHealth, float physicalDamage, float magicDamage, float physicalRes, float magicRes)
         {
-            CharacterName = name;
             MaxHealth = maxHealth;
             CurrentHealth = maxHealth;
             PhysicalDamage = physicalDamage;
@@ -39,7 +37,7 @@ namespace mercenary_guild
         protected virtual bool DealDamage(CombatCharacter target, float rawDamage, DamageTypeEnum damageType)
         {
             if (target == null) return false;
-            Debug.Log($"{CharacterName} attacks {target.CharacterName} for {rawDamage} raw {damageType} damage!");
+            Debug.Log($"{GetDisplayName()} attacks {target.GetDisplayName()} for {rawDamage} raw {damageType} damage!");
             return target.RecieveDamage(rawDamage, damageType);
         }
 
@@ -56,8 +54,8 @@ namespace mercenary_guild
             float finalDamage = incomingDamage * (1f - resistance);
             CurrentHealth = Mathf.Max(CurrentHealth - finalDamage, 0f);
 
-            Debug.Log($"{CharacterName} took {finalDamage} of {damageType} damage. HP left: {CurrentHealth}/{MaxHealth}");
-
+            Debug.Log($"{GetDisplayName()} took {finalDamage} of {damageType} damage. HP left: {CurrentHealth}/{MaxHealth}");
+            OnHealthChange?.Invoke(CurrentHealth);
             if (CurrentHealth <= 0f)
             { 
                 Die();
@@ -68,7 +66,7 @@ namespace mercenary_guild
 
         protected virtual void Die()
         {
-            Debug.Log($"{CharacterName} has been defeated!");
+            Debug.Log($"{GetDisplayName()} has been defeated!");
             OnCharacterDeath?.Invoke(this, EventArgs.Empty);
         }
     }

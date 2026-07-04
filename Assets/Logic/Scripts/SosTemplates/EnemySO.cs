@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "NewEnemy", menuName = "Enemies/Enemy Data")]
 public class EnemySO : ScriptableObject
@@ -6,7 +7,9 @@ public class EnemySO : ScriptableObject
     [Header("Base Visuals")]
     [Tooltip("The actual visual prefab spawned into the world")]
     public GameObject enemyPrefab;
-    public string enemyName;
+
+    [Header("Localized Name")]
+    public LocalizedString enemyName;
 
     [Header("Core Stats")]
     public float maxHealth;
@@ -20,4 +23,10 @@ public class EnemySO : ScriptableObject
     [Header("Rewards")]
     public int experienceReward;
     public int goldReward;
+
+    public string GetLocalizedEnemyName()
+    {
+        //Debug.Log("aaa: "+enemyName.GetLocalizedString());
+        return enemyName.GetLocalizedString();
+    }
 }
