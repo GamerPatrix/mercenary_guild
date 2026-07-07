@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cdab5e895ed2c714abab973efc7567fa
+guid: 615b6f1ca9fc4a345a03ecf9025387d9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -919656994869142203
-    second: Horny_stredB_0
+      213: -8244468059842929492
+    second: Lavy_Horny_roh_cesty_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Horny_stredB_0
+      name: Lavy_Horny_roh_cesty_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 54d1f91f5d8bc33f0800000000000000
-      internalID: -919656994869142203
+      spriteID: cac120b0bf3c59d80800000000000000
+      internalID: -8244468059842929492
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Horny_stredB_0: -919656994869142203
+      Lavy_Horny_roh_cesty_0: -8244468059842929492
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

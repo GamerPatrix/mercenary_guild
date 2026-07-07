@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cdab5e895ed2c714abab973efc7567fa
+guid: 7b61a97c052b45546b2d283f8ba5f01f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -919656994869142203
-    second: Horny_stredB_0
+      213: 2579171976808016077
+    second: plesaty_travnik_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Horny_stredB_0
+      name: plesaty_travnik_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 54d1f91f5d8bc33f0800000000000000
-      internalID: -919656994869142203
+      spriteID: dc8a8447f3f0bc320800000000000000
+      internalID: 2579171976808016077
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Horny_stredB_0: -919656994869142203
+      plesaty_travnik_0: 2579171976808016077
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
