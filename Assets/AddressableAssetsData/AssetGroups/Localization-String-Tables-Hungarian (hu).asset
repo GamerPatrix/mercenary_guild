@@ -27,6 +27,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-hu
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c741c8703dca26e44be4bf88604dfb02
+    m_Address: TMPBotomMenu_hu
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-hu
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d1516512be4faba479a296e642f0fc46
     m_Address: CombatScene_hu
     m_ReadOnly: 1

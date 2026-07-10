@@ -33,6 +33,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-ja
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ebdbaa0f0e99a88459463e678d392521
+    m_Address: TMPBotomMenu_ja
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ja
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fa81fa9d928c73649bae5f6986d013fe
     m_Address: CombatScene_ja
     m_ReadOnly: 1

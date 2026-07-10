@@ -16,6 +16,7 @@ public class EnemySO : ScriptableObject
     public float physicalDamage;
     public float magicDamage;
 
+    public List<AttackSO> attacks;
     [Header("Resistances (0.0 = full damage, 0.5 = 50% reduction, 1.0 = immune)")]
     [Range(0f, 1f)] public float physicalResistance;
     [Range(0f, 1f)] public float magicResistance;
@@ -25,8 +26,18 @@ public class EnemySO : ScriptableObject
     public int goldReward;
 
     public string GetLocalizedEnemyName()
-    {
-        //Debug.Log("aaa: "+enemyName.GetLocalizedString());
+    { 
         return enemyName.GetLocalizedString();
+    }
+
+   public AttackSO getRandomAttackSO()
+    {
+        if (attacks == null || attacks.Count == 0)
+        {
+            Debug.LogWarning("No attacks available for this enemy.");
+            return null;
+        }
+        int randomIndex = Random.Range(0, attacks.Count);
+        return attacks[randomIndex];
     }
 }

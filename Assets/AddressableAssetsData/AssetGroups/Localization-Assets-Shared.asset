@@ -30,6 +30,11 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bdcc7ef83694cd847861c5af023e9217
+    m_Address: Assets/Localization/Tables/TMPBotomMenu Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ee762f8b230bbd040b6f17284d4aca40
     m_Address: Assets/Localization/Tables/MainMenuUI Shared Data.asset
     m_ReadOnly: 1
