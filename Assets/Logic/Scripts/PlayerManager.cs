@@ -1,5 +1,6 @@
-using UnityEngine;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace mercenary_guild
 {
@@ -11,14 +12,13 @@ namespace mercenary_guild
         public string CharacterName { get; internal set; }
         public float MaxHealth { get; internal set; }
         public float CurrentHealth { get; private set; }
-        public float PhysicalDamage { get; internal set; }
-        public float MagicDamage { get; internal set; }
         public float PhysicalResistance { get; internal set; }
         public float MagicResistance { get; internal set; }
+        public List<AttackSO> attacks { get; internal set; } = new List<AttackSO>();    
 
         public static PlayerManager instance { get; private set; }
 
-        private void Awake()
+        public void Awake()
         {
             if (instance == null)
             {
@@ -39,8 +39,6 @@ namespace mercenary_guild
             CharacterName = "Player";
             MaxHealth = 100f;
             CurrentHealth = MaxHealth;
-            PhysicalDamage = 15f;
-            MagicDamage = 15f;
             PhysicalResistance = 0.1f;
             MagicResistance = 0.05f;
         }

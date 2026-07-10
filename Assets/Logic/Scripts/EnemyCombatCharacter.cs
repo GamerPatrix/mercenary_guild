@@ -22,8 +22,6 @@ namespace mercenary_guild
 
             SetCharacterStats(
                 enemyData.maxHealth,
-                enemyData.physicalDamage,
-                enemyData.magicDamage,
                 enemyData.physicalResistance,
                 enemyData.magicResistance
             );
@@ -33,7 +31,22 @@ namespace mercenary_guild
 
         public override bool Attack(CombatCharacter target)
         {
-            return DealDamage(target, PhysicalDamage, DamageTypeEnum.Physical);
+
+            var attack = enemyData.getRandomAttackSO();
+            if(attack == null) return false;
+            var PhysicalDamage = attack.physicalDamage;
+            var MagicDamage = attack.magicDamage;
+
+            if (PhysicalDamage > 0)
+            {
+                if (DealDamage(target, PhysicalDamage, DamageTypeEnum.Physical)) return true;
+            }
+
+            if (MagicDamage > 0)
+            {
+                if (DealDamage(target, MagicDamage, DamageTypeEnum.Magic)) return true;
+            }
+            return false;
         }
     }
 }

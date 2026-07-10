@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "AttackSO", menuName = "Scriptable Objects/AttackSO")]
 public class AttackSO : ScriptableObject

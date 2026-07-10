@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Localization;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "NewEnemy", menuName = "Enemies/Enemy Data")]
 public class EnemySO : ScriptableObject
@@ -13,8 +14,6 @@ public class EnemySO : ScriptableObject
 
     [Header("Core Stats")]
     public float maxHealth;
-    public float physicalDamage;
-    public float magicDamage;
 
     public List<AttackSO> attacks;
     [Header("Resistances (0.0 = full damage, 0.5 = 50% reduction, 1.0 = immune)")]

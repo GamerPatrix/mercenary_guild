@@ -9,31 +9,26 @@ namespace mercenary_guild
         public event Action<float> OnHealthChange;
         private float _maxHealth;
         private float _currentHealth;
-        private float _physicalDamage;
-        private float _magicDamage;
         private float _physicalResistance;
         private float _magicResistance;
      
         public virtual float MaxHealth { get => _maxHealth; protected set => _maxHealth = value; }
         public virtual float CurrentHealth { get => _currentHealth; protected set => _currentHealth = value; }
-        public virtual float PhysicalDamage { get => _physicalDamage; protected set => _physicalDamage = value; }
-        public virtual float MagicDamage { get => _magicDamage; protected set => _magicDamage = value; }
         public virtual float PhysicalResistance { get => _physicalResistance; protected set => _physicalResistance = value; }
         public virtual float MagicResistance { get => _magicResistance; protected set => _magicResistance = value; }
 
         public abstract string GetDisplayName();
-        protected void SetCharacterStats(float maxHealth, float physicalDamage, float magicDamage, float physicalRes, float magicRes)
+        protected void SetCharacterStats(float maxHealth, float physicalRes, float magicRes)
         {
             MaxHealth = maxHealth;
             CurrentHealth = maxHealth;
-            PhysicalDamage = physicalDamage;
-            MagicDamage = magicDamage;
             PhysicalResistance = Mathf.Clamp01(physicalRes);
             MagicResistance = Mathf.Clamp01(magicRes);
         }
 
         public abstract bool Attack(CombatCharacter target);
 
+        //returns true if the target was killed, false otherwise
         protected virtual bool DealDamage(CombatCharacter target, float rawDamage, DamageTypeEnum damageType)
         {
             if (target == null) return false;

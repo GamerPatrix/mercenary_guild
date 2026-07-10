@@ -15,8 +15,6 @@ namespace mercenary_guild
         }
 
         public override float MaxHealth { get => playerManager.MaxHealth; protected set => playerManager.MaxHealth = value; }
-        public override float PhysicalDamage { get => playerManager.PhysicalDamage; protected set => playerManager.PhysicalDamage = value; }
-        public override float MagicDamage { get => playerManager.MagicDamage; protected set => playerManager.MagicDamage = value; }
         public override float PhysicalResistance { get => playerManager.PhysicalResistance; protected set => playerManager.PhysicalResistance = value; }
         public override float MagicResistance { get => playerManager.MagicResistance; protected set => playerManager.MagicResistance = value; }
 
@@ -26,9 +24,27 @@ namespace mercenary_guild
             protected set => playerManager.SetHealth(value);
         }
 
+        public bool playerAttackWrper(CombatCharacter target,AttackSO attack)
+        { 
+            if (attack == null) return false;
+            var PhysicalDamage = attack.physicalDamage;
+            var MagicDamage = attack.magicDamage;
+
+            if (PhysicalDamage > 0)
+            {
+                if (DealDamage(target, PhysicalDamage, DamageTypeEnum.Physical)) return true;
+            }
+
+            if (MagicDamage > 0)
+            {
+                if (DealDamage(target, MagicDamage, DamageTypeEnum.Magic)) return true;
+            }
+            return false;
+        }
+
         public override bool Attack(CombatCharacter target)
         {
-           return DealDamage(target, PhysicalDamage, DamageTypeEnum.Physical);
+            throw new System.NotImplementedException("Use playerAttackWrper instead of Attack for PlayerCombatCharacter.");
         }
 
         protected override void Die()
