@@ -44,8 +44,14 @@ TagManager:
   - name: Road
     uniqueID: 785757887
     locked: 0
+  - name: Grass
+    uniqueID: 3612562893
+    locked: 0
   - name: Leaves
     uniqueID: 2587599929
+    locked: 0
+  - name: Stones
+    uniqueID: 3336487789
     locked: 0
   - name: Flowers
     uniqueID: 2586446139
