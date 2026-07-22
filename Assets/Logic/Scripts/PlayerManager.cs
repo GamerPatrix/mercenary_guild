@@ -14,7 +14,7 @@ namespace mercenary_guild
         public float CurrentHealth { get; private set; }
         public float PhysicalResistance { get; internal set; }
         public float MagicResistance { get; internal set; }
-        public List<AttackSO> attacks { get; internal set; } = new List<AttackSO>();    
+        public List<AttackSO> attacks = new List<AttackSO>();    
 
         public static PlayerManager instance { get; private set; }
 

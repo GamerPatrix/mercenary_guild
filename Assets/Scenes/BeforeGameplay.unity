@@ -215,6 +215,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GamePlayManagers
       objectReference: {fileID: 0}
+    - target: {fileID: 5471580546417405248, guid: 9ea816f6096d6f4438323e815a1d1913, type: 3}
+      propertyPath: attacks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471580546417405248, guid: 9ea816f6096d6f4438323e815a1d1913, type: 3}
+      propertyPath: 'attacks.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8739b2a0c17d2e34a8b6dee7d0f64e11, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -6,18 +6,23 @@ namespace mercenary_guild
 {
     public class BottomCombatMenuUI : MonoBehaviour
     {
+       
+
         [SerializeField] GameObject grid;
-        [SerializeField] private ClickabelItemInBotomCombatMenu itemTemplate;
+        [SerializeField] private ClickableButtonItem itemTemplate;
+        [SerializeField] private GameObject backButtonsContainer;
         private BottomCombatMenuUIManager manager;
 
-        private List<ClickabelItemInBotomCombatMenu> activeItems = new List<ClickabelItemInBotomCombatMenu>();
+        private List<ClickableButtonItem> activeItems = new List<ClickableButtonItem>();
+        private List<LocalizedString> currentMenuItems = new List<LocalizedString>();
+        private System.Action<int> onItemClickCallback;
 
         public void Initialize(BottomCombatMenuUIManager manager)
         {
             this.manager = manager;
         }
 
-        public void UpdateDisplay(List<LocalizedString> localizedStrings)
+        public void UpdateDisplay(List<LocalizedString> localizedStrings, System.Action<int> onItemClick = null, bool showBackButton = false)
         {
             // Clear existing items
             foreach (var item in activeItems)
@@ -25,6 +30,14 @@ namespace mercenary_guild
                 Destroy(item.gameObject);
             }
             activeItems.Clear();
+            currentMenuItems = localizedStrings;
+            onItemClickCallback = onItemClick;
+
+            // Show/hide back button
+            if (backButtonsContainer != null)
+            {
+                backButtonsContainer.SetActive(showBackButton);
+            }
 
             // Create new items from the list
             for (int i = 0; i < localizedStrings.Count; i++)
@@ -32,20 +45,37 @@ namespace mercenary_guild
                 var localizedString = localizedStrings[i];
                 var itemObject = Instantiate(itemTemplate.gameObject, grid.transform);
                 itemObject.SetActive(true);
-                var itemComponent = itemObject.GetComponent<ClickabelItemInBotomCombatMenu>();
+                var itemComponent = itemObject.GetComponent<ClickableButtonItem>();
 
                 if (itemComponent != null)
                 {
-                    itemComponent.Initialize(localizedString, i, this);
+                    itemComponent.Initialize(localizedString, i, this, OnItemClick);
                     activeItems.Add(itemComponent);
                 }
             }
         }
 
-        public void OnItemClick(int id)
+        private void OnItemClick(int id)
         {
-            // Handle item click with the provided ID
-            Debug.Log($"Item with ID {id} was pressed");
+            onItemClickCallback?.Invoke(id);
+        }
+
+        public void OnBackButtonClick()
+        {
+            manager.OnBackButtonClick();
+        }
+
+        public List<LocalizedString> GetCurrentMenuItems()
+        {
+            return currentMenuItems;
+        }
+
+        public enum MenuMode
+        {
+            Main,
+            Attacks,
+            Potions
         }
     }
+
 }

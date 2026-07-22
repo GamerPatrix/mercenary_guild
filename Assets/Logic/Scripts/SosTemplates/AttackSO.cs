@@ -7,4 +7,5 @@ public class AttackSO : ScriptableObject
     public LocalizedString attackName;
     public float physicalDamage;
     public float magicDamage;
+    public float trueDamage;
 }

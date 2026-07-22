@@ -21,6 +21,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-es
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a6272abc92bfd54694e464bd9a0329f
+    m_Address: Attacks_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7e76031f5b325ba428da46c06ce4e8e0
     m_Address: DeathScreen_es
     m_ReadOnly: 1

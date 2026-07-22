@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Hungarian (hu)
   m_GUID: 99a3fd2277343e4459be12daf8475398
   m_SerializeEntries:
+  - m_GUID: 12266eaa1a4238e41a54fd47b25302e6
+    m_Address: Attacks_hu
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-hu
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 464a88624d55a8042b15e3b5de777597
     m_Address: Enemies_hu
     m_ReadOnly: 1

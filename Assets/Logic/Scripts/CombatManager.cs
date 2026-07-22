@@ -139,7 +139,12 @@ namespace mercenary_guild {
 
         private void Attack()
         {
-             if(playerCombatCharacter.Attack(targetCombatCharacter)) return;
+             
+        }
+
+        public void PlayerWantsToAttackWith(AttackSO playerAttack)
+        {
+            if (playerCombatCharacter.playerAttackWrper(targetCombatCharacter, playerAttack)) return;
             targetCombatCharacter.Attack(playerCombatCharacter);
         }
 
