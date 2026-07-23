@@ -55,6 +55,7 @@ namespace mercenary_guild
 
         public void OnMainMenuItemClick(int id)
         {
+                Debug.Log($"Main menu item clicked: {id}");
             switch (id)
             {
                 case 0: // Attack button

@@ -6,14 +6,13 @@ namespace mercenary_guild
 {
     public class BottomCombatMenuUI : MonoBehaviour
     {
-       
-
         [SerializeField] GameObject grid;
-        [SerializeField] private ClickableButtonItem itemTemplate;
-        [SerializeField] private GameObject backButtonsContainer;
-        private BottomCombatMenuUIManager manager;
+    [SerializeField] private ClickableButtonItem itemTemplate;
+    [SerializeField] private LocalizedString backButtonText;
+    private ClickableButtonItem backButton;
+    private BottomCombatMenuUIManager manager;
 
-        private List<ClickableButtonItem> activeItems = new List<ClickableButtonItem>();
+    private List<ClickableButtonItem> activeItems = new List<ClickableButtonItem>();
         private List<LocalizedString> currentMenuItems = new List<LocalizedString>();
         private System.Action<int> onItemClickCallback;
 
@@ -33,10 +32,23 @@ namespace mercenary_guild
             currentMenuItems = localizedStrings;
             onItemClickCallback = onItemClick;
 
-            // Show/hide back button
-            if (backButtonsContainer != null)
+            // Clear back button if not needed
+            if (backButton != null && !showBackButton)
             {
-                backButtonsContainer.SetActive(showBackButton);
+                Destroy(backButton.gameObject);
+                backButton = null;
+            }
+
+            // Show/hide back button
+            if (backButton != null)
+            {
+                backButton.gameObject.SetActive(showBackButton);
+            }
+            
+            // Create back button if needed
+            if (showBackButton && backButton == null)
+            {
+                CreateBackButton();
             }
 
             // Create new items from the list
@@ -53,6 +65,35 @@ namespace mercenary_guild
                     activeItems.Add(itemComponent);
                 }
             }
+
+            
+        }
+
+        private void CreateBackButton()
+        {
+            if (itemTemplate == null)
+            {
+                Debug.LogError("itemTemplate is null in BottomCombatMenuUI - cannot create back button");
+                return;
+            }
+            if (grid == null)
+            {
+                Debug.LogError("grid is null in BottomCombatMenuUI - cannot create back button");
+                return;
+            }
+
+            var itemObject = Instantiate(itemTemplate.gameObject, grid.transform);
+            itemObject.SetActive(true);
+            backButton = itemObject.GetComponent<ClickableButtonItem>();
+            if (backButton != null)
+            {
+                backButton.Initialize(backButtonText, -1, this, OnBackButtonClick);
+                Debug.Log("Back button created successfully");
+            }
+            else
+            {
+                Debug.LogError("Failed to get ClickableButtonItem component from instantiated object");
+            }
         }
 
         private void OnItemClick(int id)
@@ -60,7 +101,7 @@ namespace mercenary_guild
             onItemClickCallback?.Invoke(id);
         }
 
-        public void OnBackButtonClick()
+        private void OnBackButtonClick(int id)
         {
             manager.OnBackButtonClick();
         }

@@ -7,10 +7,6 @@ namespace mercenary_guild {
     {
         [SerializeField] private EnemyBiomeListSO m_enemyBiomeList;
 
-        [SerializeField] private Button attack;
-        [SerializeField] private Button retreat;
-        [SerializeField] private Button dodge;
-
 
 
         public static CombatManager instance { get; private set; }
@@ -35,11 +31,6 @@ namespace mercenary_guild {
             deathUI.SetActive(false);
             if (instance == null) instance = this;
             else Destroy(gameObject);
-
-            attack.onClick.AddListener(() => Attack()); 
-
-            retreat.onClick.AddListener(() => Retreat());
-            dodge.onClick.AddListener(() => Dodge());
             targetCombatCharacter.Initialize(GetRandomEnemyByWeightedRarity());
         }
 

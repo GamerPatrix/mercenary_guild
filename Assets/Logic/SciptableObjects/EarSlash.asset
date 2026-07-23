@@ -14,15 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
   attackName:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:38ac5011b62f3ab42bd66457532ba759
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 3216002425806848
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  physicalDamage: 0
-  magicDamage: 0
+  physicalDamage: 0.43
+  magicDamage: 5.67
+  trueDamage: 0
   references:
     version: 2
     RefIds: []

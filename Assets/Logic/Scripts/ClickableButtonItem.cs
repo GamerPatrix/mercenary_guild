@@ -12,6 +12,7 @@ namespace mercenary_guild
         private System.Action<int> onClickCallback;
         [SerializeField] private TextMeshProUGUI nameText;
 
+
         private void OnEnable()
         {
             LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;

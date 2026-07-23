@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
   m_TableCollectionName: Attacks
   m_TableCollectionNameGuidString: 38ac5011b62f3ab42bd66457532ba759
-  m_Entries: []
+  m_Entries:
+  - m_Id: 3216002425806848
+    m_Key: Attacks.EarSlash
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
