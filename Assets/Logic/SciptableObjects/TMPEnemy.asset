@@ -23,8 +23,8 @@ MonoBehaviour:
     m_WaitForCompletion: 0
     m_LocalVariables: []
   maxHealth: 100
-  physicalDamage: 10
-  magicDamage: 5
+  attacks:
+  - {fileID: 11400000, guid: 8739b2a0c17d2e34a8b6dee7d0f64e11, type: 2}
   physicalResistance: 0.113
   magicResistance: 0.248
   experienceReward: 43

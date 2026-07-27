@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 30746086435464884}
+  - component: {fileID: 8424009891514241704}
   m_Layer: 0
   m_Name: GamePlayManagers
   m_TagString: Untagged
@@ -32,6 +33,18 @@ Transform:
   - {fileID: 3668778306464311463}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8424009891514241704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967388445046610136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb304e0846c18a04580fa3c8e65f34c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoNotDestroyOnLoad
 --- !u!1 &3341271736707784573
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,6 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3668778306464311463}
   - component: {fileID: 5471580546417405248}
+  - component: {fileID: 7530520713037889378}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -76,3 +90,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf61a347ed3eef4a9119aec91a4018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
+  attacks:
+  - {fileID: 11400000, guid: 8739b2a0c17d2e34a8b6dee7d0f64e11, type: 2}
+--- !u!114 &7530520713037889378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3341271736707784573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 405489c742d9ff946b7e366446f6bbc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::mercenary_guild.Inventory
