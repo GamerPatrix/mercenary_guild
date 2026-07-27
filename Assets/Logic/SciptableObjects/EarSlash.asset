@@ -21,8 +21,9 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  physicalDamage: 0.43
-  magicDamage: 5.67
+  physicalDamage: 8.22
+  magicDamage: 0
+  manaCost: 0
   trueDamage: 0
   references:
     version: 2

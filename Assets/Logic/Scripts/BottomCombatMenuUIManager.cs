@@ -80,10 +80,10 @@ namespace mercenary_guild
             if (PlayerManager.instance != null && id >= 0 && id < PlayerManager.instance.attacks.Count)
             {
                 var selectedAttack = PlayerManager.instance.attacks[id];
-                
+
                 combatManager.PlayerWantsToAttackWith(selectedAttack);
             }
-            Debug.LogError("Somehow no attack selected");
+            else { Debug.LogError("Somehow no attack selected"); }
         }
 
         public void OnPotionItemClick(int id)
