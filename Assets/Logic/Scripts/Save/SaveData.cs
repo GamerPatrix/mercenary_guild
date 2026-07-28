@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace mercenary_guild
 {
-    [Serializable]
+    [System.Serializable]
     public class SaveData
     {
         public string CharacterName;
@@ -11,13 +11,18 @@ namespace mercenary_guild
         public float CurrentHealth;
         public float PhysicalResistance;
         public float MagicResistance;
-        public List<string> InventoryItems;
+        public List<ItemData> InventoryItemNames;
 
         public SaveData()
         {
-            InventoryItems = new List<string>();
+            InventoryItemNames = new List<ItemData>();
         }
 
-
+        [System.Serializable]
+        public struct ItemData
+        {
+            public string itemName;
+            public int count;
+        }
     }
 }

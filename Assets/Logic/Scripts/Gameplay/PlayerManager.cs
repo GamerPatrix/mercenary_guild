@@ -51,7 +51,7 @@ namespace mercenary_guild
                 MagicResistance = savedData.MagicResistance;
 
                 // Load inventory items
-                LoadInventoryItems(savedData);
+                SaveManager.LoadInventoryItems(savedData, inventory);
             }
             else
             {
@@ -62,11 +62,10 @@ namespace mercenary_guild
 
         private void LoadInventoryItems(SaveData saveData)
         {
-            // TODO: Implement inventory loading
-            // For now, just clear and use defaults
-            if (inventory != null)
+            // Deprecated - now handled by SaveManager.LoadInventoryItems
+            if (saveData != null && inventory != null)
             {
-                inventory.RebuildFromStartingGear();
+                SaveManager.LoadInventoryItems(saveData, inventory);
             }
         }
 

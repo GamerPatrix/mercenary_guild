@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using mercenary_guild.sos;
+using mercenary_guild;
 
 namespace mercenary_guild
 {
@@ -19,9 +21,28 @@ namespace mercenary_guild
                 MagicResistance = playerManager.MagicResistance
             };
 
-            // Get inventory items count and info
-            // For now, we'll just save the item count
-            saveData.InventoryItems = new List<string>();
+            // Save inventory items - use item names for serialization
+            if (inventory != null)
+            {
+                List<Inventory.ItemCounted> inventoryItems = inventory.GetAllItemCounted();
+                if (inventoryItems != null)
+                {
+                    saveData.InventoryItemNames = new List<SaveData.ItemData>();
+                    foreach (var itemCounted in inventoryItems)
+                    {
+                        if (itemCounted.itemSO != null)
+                        {
+                            // Save the item name (LocalizedString.Value) and count
+                            SaveData.ItemData itemData = new SaveData.ItemData
+                            {
+                                itemName = itemCounted.itemSO.ItemName,
+                                count = itemCounted.Actualcount
+                            };
+                            saveData.InventoryItemNames.Add(itemData);
+                        }
+                    }
+                }
+            }
 
             // Serialize and save
             string saveString = JsonUtility.ToJson(saveData);
@@ -40,6 +61,32 @@ namespace mercenary_guild
             }
 
             return null;
+        }
+
+        public static void LoadInventoryItems(SaveData saveData, Inventory inventory)
+        {
+            if (saveData == null || inventory == null || saveData.InventoryItemNames == null)
+                return;
+
+            // Clear current inventory and rebuild from starting gear
+            inventory.RebuildFromStartingGear();
+
+            // Load each item from the saved data
+            foreach (var itemData in saveData.InventoryItemNames)
+            {
+                // Look for the item in Resources/Items folder
+                ItemSO item = Resources.Load<ItemSO>($"Items/{itemData.itemName}");
+                if (item != null)
+                {
+                    // Add the item with its saved count
+                    inventory.Add(item, itemData.count);
+                    Debug.Log($"Loaded inventory item: {itemData.itemName} (count: {itemData.count})");
+                }
+                else
+                {
+                    Debug.LogWarning($"Failed to load inventory item: '{itemData.itemName}' - item not found in Resources/Items folder");
+                }
+            }
         }
 
         public static bool HasSavedData(int slotIndex)

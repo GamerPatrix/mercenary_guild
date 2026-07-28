@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace mercenary_guild
 {
-    
+
 
     public class SaveDataManager : MonoBehaviour
     {
@@ -141,6 +141,9 @@ namespace mercenary_guild
             PlayerManager.instance.CurrentHealth = saveData.CurrentHealth;
             PlayerManager.instance.PhysicalResistance = saveData.PhysicalResistance;
             PlayerManager.instance.MagicResistance = saveData.MagicResistance;
+
+            // Load inventory items
+            SaveManager.LoadInventoryItems(saveData, PlayerManager.instance.inventory);
         }
         
     }
