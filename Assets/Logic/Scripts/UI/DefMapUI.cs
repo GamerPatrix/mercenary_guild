@@ -36,6 +36,11 @@ public class DefMapUIManager : MonoBehaviour
         if (inventoryUI != null)
         {
             inventoryUI.SetActive(true);
+            InventoryUIManager inventoryUIManager = inventoryUI.GetComponent<InventoryUIManager>();
+            if (inventoryUIManager != null)
+            {
+                inventoryUIManager.DisplayInventoryItems();
+            }
         }
     }
 

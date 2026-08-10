@@ -34,9 +34,14 @@ public class InventoryUIManager : MonoBehaviour
         }
     }
 
+    [SerializeField] private PlayerInventoryUI playerInventoryUI;
+
     public void DisplayInventoryItems()
     {
-        PlayerManager.Instance.Inventory.Items
+        if (playerInventoryUI != null)
+        {
+            playerInventoryUI.DisplayItems();
+        }
     }
 
 }
