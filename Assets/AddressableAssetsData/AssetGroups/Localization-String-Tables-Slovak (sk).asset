@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Slovak (sk)
   m_GUID: 69cbcb6421e36664cbf570efab5621b4
   m_SerializeEntries:
+  - m_GUID: 352f6a17f6d129d4d84052bd9c5477e9
+    m_Address: Items_sk
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sk
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4aece6d79b9bbf24492ff50aec149aef
     m_Address: TMPBotomMenu_sk
     m_ReadOnly: 1

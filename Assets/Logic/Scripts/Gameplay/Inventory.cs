@@ -11,12 +11,18 @@ namespace mercenary_guild
     /// </summary>
     public class Inventory : MonoBehaviour
     {
-        private List<ItemCounted> items = new List<ItemCounted>();
+        [SerializeField] private List<ItemCounted> items = new List<ItemCounted>();
 
         /// <summary>
         /// Invoked whenever the contents of the inventory change.
         /// </summary>
         public event Action InventoryChanged;
+
+        /// <summary>
+        /// Exposes the list of items for inspector access.
+        /// Note: Modifications in inspector won't trigger InventoryChanged event.
+        /// </summary>
+        public List<ItemCounted> Items => items;
 
         private void Awake()
         {
@@ -42,7 +48,7 @@ namespace mercenary_guild
         /// </summary>
         public bool Contains(ItemSO item)
         {
-            return item != null && items.Exists(i => i.itemSO == item);
+            return item != null && items.Exists(i => i.ItemSO == item);
         }
 
         /// <summary>
@@ -51,8 +57,8 @@ namespace mercenary_guild
         public int CountOf(ItemSO item)
         {
             if (item == null) return 0;
-            var found = items.Find(i => i.itemSO == item);
-            return found.itemSO != null ? found.Actualcount : 0;
+            var found = items.Find(i => i.ItemSO == item);
+            return found.ItemSO != null ? found.Actualcount : 0;
         }
 
         /// <summary>
@@ -65,8 +71,8 @@ namespace mercenary_guild
                 return false;
             }
 
-            var existing = items.Find(i => i.itemSO == item);
-            if (existing.itemSO != null)
+            var existing = items.Find(i => i.ItemSO == item);
+            if (existing.ItemSO != null)
             {
                 existing.addCount(count);
             }
@@ -90,7 +96,7 @@ namespace mercenary_guild
                 return false;
             }
 
-            var index = items.FindIndex(i => i.itemSO == item);
+            var index = items.FindIndex(i => i.ItemSO == item);
             if (index == -1)
             {
                 return false;
@@ -127,51 +133,60 @@ namespace mercenary_guild
 
         public List<ItemSO> GetAllItems()
         {
-            return items.ConvertAll(i => i.itemSO);
+            return items.ConvertAll(i => i.ItemSO);
         }
 
+        [System.Serializable]
         public struct ItemCounted
         {
-            public ItemSO itemSO;
+            [SerializeField] private ItemSO itemSO;
             // The actual count of the item in the inventory from 1 so 0 means it shouldnt exist in the inventory
-            public int Actualcount;
+            [SerializeField] private int actualcount;
+
             public ItemCounted(ItemSO itemSO, int count)
             {
                 this.itemSO = itemSO;
-                this.Actualcount = count;
+                this.actualcount = count;
             }
+
             public ItemCounted(ItemSO itemSO)
             {
                 this.itemSO = itemSO;
-                this.Actualcount = 1;
+                this.actualcount = 1;
             }
+
+            public ItemSO ItemSO { get => itemSO; set => itemSO = value; }
+            public int Actualcount { get => actualcount; set => actualcount = value; }
 
             public void addCount(int count)
             {
-                this.Actualcount += count;
+                this.actualcount += count;
             }
+
             public void addOne()
             {
-                this.Actualcount++;
+                this.actualcount++;
             }
+
             public bool removeCount(int count)
             {
-                if (this.Actualcount >= count)
+                if (this.actualcount >= count)
                 {
-                    this.Actualcount -= count;
+                    this.actualcount -= count;
                     return true;
                 }
-                Debug.LogError("Attempted to remove more items than available. Actualcount: " + this.Actualcount + ", tried to remove: " + count);
+                Debug.LogError("Attempted to remove more items than available. Actualcount: " + this.actualcount + ", tried to remove: " + count);
                 return false;
             }
+
             public bool removeOne()
             {
-                if (this.Actualcount > 0)
+                if (this.actualcount > 0)
                 {
-                    this.Actualcount--;
+                    this.actualcount--;
                     return true;
                 }
-                Debug.LogError("Attempted to remove an item when count is already zero. Actualcount: " + this.Actualcount);
+                Debug.LogError("Attempted to remove an item when count is already zero. Actualcount: " + this.actualcount);
                 return false;
             }
 

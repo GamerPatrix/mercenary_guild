@@ -39,6 +39,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-th
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 86a2cecdecac0d64c8fda5e3e68c46f8
+    m_Address: Items_th
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-th
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bfef6d6c3483ee141a7ae062288200a2
     m_Address: CombatScene_th
     m_ReadOnly: 1

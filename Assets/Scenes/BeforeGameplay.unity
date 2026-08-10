@@ -215,11 +215,39 @@ PrefabInstance:
       propertyPath: m_Name
       value: GamePlayManagers
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7530520713037889378, guid: 9ea816f6096d6f4438323e815a1d1913, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3341271736707784573, guid: 9ea816f6096d6f4438323e815a1d1913, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3407744306617327760}
   m_SourcePrefab: {fileID: 100100000, guid: 9ea816f6096d6f4438323e815a1d1913, type: 3}
+--- !u!1 &3407744306617327759 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3341271736707784573, guid: 9ea816f6096d6f4438323e815a1d1913, type: 3}
+  m_PrefabInstance: {fileID: 3407744306617327758}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3407744306617327760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407744306617327759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f7e6c278d7382847a99a0dc0ab9904b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::mercenary_guild.Inventory
+  items:
+  - itemSO: {fileID: 11400000, guid: 1f6b33dac43820344bff443b9fa8ec90, type: 2}
+    actualcount: 61
+  - itemSO: {fileID: 11400000, guid: 1f6b33dac43820344bff443b9fa8ec90, type: 2}
+    actualcount: 31
+  - itemSO: {fileID: 11400000, guid: 1f6b33dac43820344bff443b9fa8ec90, type: 2}
+    actualcount: 113
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

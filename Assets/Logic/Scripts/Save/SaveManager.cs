@@ -1,4 +1,4 @@
-using System;
+    using System;
 using System.Collections.Generic;
 using UnityEngine;
 using mercenary_guild.sos;
@@ -30,12 +30,12 @@ namespace mercenary_guild
                     saveData.InventoryItemNames = new List<SaveData.ItemData>();
                     foreach (var itemCounted in inventoryItems)
                     {
-                        if (itemCounted.itemSO != null)
+                        if (itemCounted.ItemSO != null)
                         {
                             // Save the item name (LocalizedString.Value) and count
                             SaveData.ItemData itemData = new SaveData.ItemData
                             {
-                                itemName = itemCounted.itemSO.ItemName,
+                                itemName = itemCounted.ItemSO.ItemName,
                                 count = itemCounted.Actualcount
                             };
                             saveData.InventoryItemNames.Add(itemData);
